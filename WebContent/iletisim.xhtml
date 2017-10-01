@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+
+
+
+    <h:head>    
+        <title>EKS V.0.0.1 </title>
+        <link href="${facesContext.externalContext.requestContextPath}/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="${facesContext.externalContext.requestContextPath}/css/theme1.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="theme.css"/>
+        <div id="container">
+            <div id="header">
+                <h2>Envanter Yönetim Sistemi</h2>
+                <div id="topmenu">
+                    <ul>
+                        <li class="current"><h:link value="Anasayfa" outcome="Giris"/></li>
+                        <li><h:link value="Üye Ol" outcome="Giris"/></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="top-panel"></div>
+            <div id="wrapper">
+                <div id="footer" align="center">
+                    <div id="rightnow">
+                        <h3 class="reallynow">
+                            <span>Duyurular</span><br />
+                        </h3>
+                        <p class="youhave"><h:outputText value="Kayıt Sistemi Güncellenmektedir!"/>
+                        </p>
+                    </div>
+                    <div id="infowrap">
+                        <div id="box">
+                            <h3 id="adduser">Üye Girişi</h3>
+                            <h:form>
+                                <h:outputText value="Email : "/>
+                                <h:inputText id="kullanici_adi" value="#{aLoginBean.alogin.k_adi}" required="true" requiredMessage=" ~ Boş Geçilemez."/><h:message for="kullanici_adi" class="error_message"></h:message><br></br><p></p>
+                                
+                                <h:outputText value="Şifre :  "/>
+                                <h:inputSecret id="sifre" value="#{aLoginBean.alogin.k_sifre}"  required="true" requiredMessage=" ~ Boş Geçilemez." /><h:message for="sifre"></h:message><br></br><p></p>
+                                <h:commandButton action="#{aLoginBean.sorgula()}" value="Giriş Yap" type="submit"/>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">Yazılım <a href="http://www.burakkutbay.com">Burak KUTBAY </a>- Tasarım <a href="http://www.bloganje.com">Bloganje</a>
+            </div>
+        </div>
+    </h:body>
+
+</html>

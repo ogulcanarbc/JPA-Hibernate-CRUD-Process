@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<body >
+<div style="display:block;text-align:center">
+<img src="isbak-logo-tr.png" /></div>
+<h:form>
+
+	<p:growl id="messages" />
+
+	<p:menubar>
+		<p:submenu label="İSBAK A.Ş." icon="ui-icon-document">
+			<p:submenu label="Hakkında" icon="ui-icon-contact">
+				<p:menuitem value="Tarihçe" url="http://isbak.istanbul/hakkimizda/tarihce/" />
+				<p:menuitem value="Şirket Profili" url="#" />
+				<p:menuitem value="Misyon ve Vizyon" url="#" />
+				<p:menuitem value="Üye Kuruluşlar" url="#" />
+			</p:submenu>
+			<p:menuitem value="Ödüller" url="#" />
+			<p:separator />
+		</p:submenu>
+
+		<p:submenu label="Uygulamalar" url="#" icon="ui-icon-pencil">
+			<p:menuitem value="Akıllı Ulaşım Sistemleri" url="http://isbak.istanbul/akilli-ulasim-sistemleri/" />
+			<p:menuitem value="Tünel Yönetim Sistemleri" url="#" />
+		</p:submenu>
+
+		<p:submenu label="İletişim" url="http://isbak.istanbul/iletisim/">
+				<p:menuitem value="Adres" url="http://isbak.istanbul/iletisim/" />
+
+		</p:submenu>
+
+		<f:facet name="options">
+			<p:inputText style="margin-right:10px" placeholder="Ara" />
+			<p:commandButton type="button" value="Giriş" icon="ui-icon-extlink" />
+		</f:facet>
+	</p:menubar>
+
+	<p:panel style="position: absolute;top: 40%;left: 37%">
+		<p:panelGrid columns="2" cellpadding="4">
+			<p:outputLabel value="Kullanıcı Adınız:" />
+			<p:inputText value="#{aLoginBean.alogin.k_adi}" >
+			<f:validateLength minimum="2" />
+			</p:inputText>
+			<p:outputLabel value="Şifre:" />
+			<p:password value="#{aLoginBean.alogin.k_sifre}" feedback="true"
+				promptLabel="Lütfen şifre giriniz" weakLabel="Zayıf"
+				goodLabel="Orta seviye" strongLabel="Güçlü" />
+			<p:outputLabel value="Yetki:" />
+			<p:inputText value="#{aLoginBean.alogin.k_yetki}" />
+
+			<p:outputLabel
+				value="#{aLoginBean.guvenlikKod.bir} + #{aLoginBean.guvenlikKod.iki}" />
+			<p:inputText value="#{aLoginBean.guvenlikKod.toplamGir}" />
+			<f:facet name="footer">
+				<p:commandButton
+					style=" margin-top:10px; width: 130px; height:40px;" value="Giriş"
+					action="#{aLoginBean.yonlendir()}" />
+				<p:commandButton value="Kaydol" onclick="PF('dialog').show();"
+					style="margin-top:10px; width: 130px; height:40px;" />
+
+			</f:facet>
+		</p:panelGrid>
+	</p:panel>
+
+	<p:dialog widgetVar="dialog" header="Kayıt Ol" hideEffect="bounce">
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Kullanıcı Adı:" />
+			<h:inputText value="#{dbLoginBean.dblogin.db_adi}" />
+
+			<p:outputLabel value="Şifre:" />
+			<h:inputText value="#{dbLoginBean.dblogin.db_sifre}" />
+
+			<p:outputLabel value="Yetki:" />
+			<h:inputText value="#{dbLoginBean.dblogin.db_yetki}" />
+			<f:facet name="footer">
+				<h:commandButton value="Kaydet"
+					action="#{dbLoginBean.dbloginKaydet()}" />
+			</f:facet>
+		</p:panelGrid>
+
+	</p:dialog>
+
+
+
+</h:form>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<div style="display: block; text-align: center">
+		<img src="isbak-logo-tr.png" />
+	</div>
+	<h:form>
+		<p:growl id="messages" />
+
+		<p:menubar>
+			<p:submenu label="İSBAK A.Ş." icon="ui-icon-document">
+				<p:submenu label="Hakkında" icon="ui-icon-contact">
+					<p:menuitem value="Tarihçe" url="#" />
+					<p:menuitem value="Şirket Profili" url="#" />
+					<p:menuitem value="Misyon ve Vizyon" url="#" />
+					<p:menuitem value="Üye Kuruluşlar" url="#" />
+				</p:submenu>
+				<p:menuitem value="Ödüller" url="#" />
+				<p:separator />
+			</p:submenu>
+
+			<p:submenu label="Uygulamalar" url="#" icon="ui-icon-pencil">
+				<p:menuitem value="Akıllı Ulaşım Sistemleri" url="#" />
+				<p:menuitem value="Tünel Yönetim Sistemleri" url="#" />
+			</p:submenu>
+
+			<p:submenu label="Yönetici İşlemleri" icon="ui-icon-document">
+				<p:submenu label="Ekle-Sil-Güncelle" icon="ui-icon-contact">
+					<p:menuitem value="Çalışan Ekle" url="CalisanEkle.xhtml" />
+					<p:menuitem value="Çalışan Sil" url="CalisanSil.xhtml" />
+					<p:menuitem value="Çalışan Güncelle" url="CalisanGuncelle.xhtml" />
+				</p:submenu>
+
+				<p:submenu label="Arama İşlemleri" icon="ui-icon-contact">
+					<p:menuitem value="Ada Göre " url="AdAra.xhtml" />
+					<p:menuitem value="T.C. No'ya Göre" url="TcAra.xhtml" />
+					<p:menuitem value="Departmana Göre" url="DeptAra.xhtml" />
+				</p:submenu>
+			</p:submenu>
+
+
+			<p:submenu label="İletişim" url="iletisim.xhtml">
+
+
+			</p:submenu>
+			<p:menuitem value="Çıkış" url="Giris.xhtml" icon="ui-icon-close" />
+		</p:menubar>
+
+
+		<p:panel style="position: absolute;top: 30%; ">
+			<p:panelGrid columns="1">
+				<p:panel header="Düzenleme İşlemi">
+					<p:panelGrid columns="4" border="1" cellpadding="10"
+						cellspacing="1">
+						<p:outputLabel value="Ad:" />
+						<p:inputText value="#{calisanBean.calisan.ad}" />
+
+						<p:outputLabel value="Soyad:" />
+						<p:inputText value="#{calisanBean.calisan.soyad}" />
+
+						<p:outputLabel value="Yaş:" />
+						<p:inputText value="#{calisanBean.calisan.yas}" />
+
+						<p:outputLabel value="T.C. No:" />
+						<p:inputText value="#{calisanBean.calisan.tcNo}" />
+
+						<p:outputLabel value="Adres:" />
+						<p:inputText value="#{calisanBean.calisan.adres}" />
+
+						<p:outputLabel value="E-Mail:" />
+						<p:inputText value="#{calisanBean.calisan.email}" />
+
+
+						<p:outputLabel value="Maaş:" />
+						<p:inputText value="#{calisanBean.calisan.ucret}" />
+
+						<p:outputLabel value="Departman:" />
+
+						<p:selectOneMenu value="#{calisanBean.calisan.departmanAd}">
+							<f:selectItem itemValue="Ar-Ge" itemLabel="Ar-Ge" />
+							<f:selectItem itemValue="Muhasebe" itemLabel="Muhasebe" />
+							<f:selectItem itemValue="Bilgi İşlem" itemLabel="Bilgi İşlem" />
+							<f:selectItem itemValue="İnsan Kaynakları"
+								itemLabel="İnsan Kaynakları" />
+							<f:selectItem itemValue="Sinyalizasyon" itemLabel="Sinyalizasyon" />
+
+						</p:selectOneMenu>
+
+
+						<f:facet name="footer">
+							<h:panelGroup style="display:block; text-align:center">
+								<h:commandButton id="submit" value="Güncelle"
+									action="#{calisanBean.calisanDuzenle()}" />
+							</h:panelGroup>
+						</f:facet>
+					</p:panelGrid>
+				</p:panel>
+
+				<p:dataTable value="#{calisanBean.calisanListe}" var="cls">
+
+					<p:column headerText="İşlem">
+
+						<h:commandLink value="Seç">
+							<f:setPropertyActionListener target="#{calisanBean.calisan}"
+								value="#{cls}" />
+						</h:commandLink>
+					</p:column>
+
+					<p:column headerText="Ad">
+						<h:outputText value="#{cls.ad}" />
+					</p:column>
+
+					<p:column headerText="Soyad">
+
+						<h:outputText value="#{cls.soyad}" />
+					</p:column>
+
+					<p:column headerText="Yaş">
+
+						<h:outputText value="#{cls.yas}" />
+					</p:column>
+
+					<p:column headerText="T.C. No">
+
+						<h:outputText value="#{cls.tcNo}" />
+					</p:column>
+
+					<p:column headerText="Adres">
+
+						<h:outputText value="#{cls.adres}" />
+					</p:column>
+
+					<p:column headerText="E-Mail">
+
+						<h:outputText value="#{cls.email}" />
+					</p:column>
+
+					<p:column headerText="Departman">
+
+						<h:outputText value="#{cls.departmanAd}" />
+					</p:column>
+					<p:column headerText="Maaş">
+
+						<h:outputText value="#{cls.ucret}" />
+					</p:column>
+				</p:dataTable>
+
+			</p:panelGrid>
+		</p:panel>
+
+
+
+	</h:form>
+</body>
+</html>

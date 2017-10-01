@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<div style="display: block; text-align: center">
+		<img src="isbak-logo-tr.png" />
+	</div>
+	<h:form>
+		<p:growl id="messages" />
+
+		<p:menubar>
+			<p:submenu label="İSBAK A.Ş." icon="ui-icon-document">
+				<p:submenu label="Hakkında" icon="ui-icon-contact">
+					<p:menuitem value="Tarihçe" url="#" />
+					<p:menuitem value="Şirket Profili" url="#" />
+					<p:menuitem value="Misyon ve Vizyon" url="#" />
+					<p:menuitem value="Üye Kuruluşlar" url="#" />
+				</p:submenu>
+				<p:menuitem value="Ödüller" url="#" />
+				<p:separator />
+			</p:submenu>
+
+			<p:submenu label="Uygulamalar" url="#" icon="ui-icon-pencil">
+				<p:menuitem value="Akıllı Ulaşım Sistemleri"
+					url="http://isbak.istanbul/akilli-ulasim-sistemleri/" />
+				<p:menuitem value="Tünel Yönetim Sistemleri" url="#" />
+			</p:submenu>
+
+			<p:submenu label="Yönetici İşlemleri" icon="ui-icon-document">
+				<p:submenu label="Ekle-Sil-Güncelle" icon="ui-icon-contact">
+					<p:menuitem value="Çalışan Ekle" url="CalisanEkle.xhtml" />
+					<p:menuitem value="Çalışan Sil" url="CalisanSil.xhtml" />
+					<p:menuitem value="Çalışan Güncelle" url="CalisanGuncelle.xhtml" />
+				</p:submenu>
+
+				<p:submenu label="Arama İşlemleri" icon="ui-icon-contact">
+					<p:menuitem value="Ada Göre " url="AdAra.xhtml" />
+					<p:menuitem value="T.C. No'ya Göre" url="TcAra.xhtml" />
+					<p:menuitem value="Departmana Göre" url="DeptAra.xhtml" />
+				</p:submenu>
+			</p:submenu>
+
+
+			<p:submenu label="İletişim" url="http://isbak.istanbul/iletisim/">
+
+			</p:submenu>
+			<p:menuitem value="Çıkış" url="Giris.xhtml" icon="ui-icon-close" />
+
+
+		</p:menubar>
+
+		<p:panel header="Sorgula"
+			style="position: absolute;top: 35%;text-align:center">
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Aradığınız Çalışan Adını Giriniz:" />
+				<p:inputText value="#{calisanBean.calisan.ad}" onchange="submit()" />
+
+				<f:facet name="footer">
+					<h:panelGroup style="display:block; text-align:right">
+						<h:commandButton id="submit" value="Ara"
+							style=" margin-top:10px; width: 130px; height:40px;" />
+					</h:panelGroup>
+				</f:facet>
+			</h:panelGrid>
+
+
+		</p:panel>
+
+
+
+
+		<p:panel header="Bulunan Sonuçlar"
+			style="position: absolute;top: 61%;">
+
+
+			<p:panelGrid columns="2">
+				<p:dataTable value="#{calisanBean.calisanAdaGoreAra}" var="must">
+
+					<p:column headerText="Ad">
+						<h:outputText value="#{must.ad}" />
+					</p:column>
+
+					<p:column headerText="Soyad">
+
+						<h:outputText value="#{must.soyad}" />
+					</p:column>
+
+					<p:column headerText="Yaş">
+
+						<h:outputText value="#{must.yas}" />
+					</p:column>
+
+					<p:column headerText="T.C. No">
+
+						<h:outputText value="#{must.tcNo}" />
+					</p:column>
+
+					<p:column headerText="Adres">
+
+						<h:outputText value="#{must.adres}" />
+					</p:column>
+
+					<p:column headerText="E-Mail">
+
+						<h:outputText value="#{must.email}" />
+					</p:column>
+
+					<p:column headerText="Departman">
+
+						<h:outputText value="#{must.departmanAd}" />
+					</p:column>
+					<p:column headerText="Maaş">
+
+						<h:outputText value="#{must.ucret}" />
+					</p:column>
+
+				</p:dataTable>
+
+			</p:panelGrid>
+		</p:panel>
+
+
+
+	</h:form>
+
+
+</body>
+</html>
